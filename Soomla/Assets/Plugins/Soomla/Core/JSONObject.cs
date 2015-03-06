@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Globalization;
 using Debug = UnityEngine.Debug;
 
 /*
@@ -307,13 +308,18 @@ public class JSONObject : NullCheckable {
 				}
 			}
 			if(str.Length > 0) {
-				if(string.Compare(str, "true", true) == 0) {
+                if (str.ToLower() == "true")
+                {
 					type = Type.BOOL;
 					b = true;
-				} else if(string.Compare(str, "false", true) == 0) {
+                }
+                else if (str.ToLower() == "false")
+                {
 					type = Type.BOOL;
 					b = false;
-				} else if(string.Compare(str, "null", true) == 0) {
+                }
+                else if (str.ToLower() == "null")
+                {
 					type = Type.NULL;
 					#if USEFLOAT
 				} else if(str == INFINITY) {
@@ -870,7 +876,7 @@ public class JSONObject : NullCheckable {
 					builder.Append(NaN);
 				#endif
 				else
-					builder.Append(n.ToString());
+                    builder.Append(n.ToString(CultureInfo.InvariantCulture));
 				break;
 			case Type.OBJECT:
 				builder.Append("{");

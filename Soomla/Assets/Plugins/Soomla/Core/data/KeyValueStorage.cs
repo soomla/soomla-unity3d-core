@@ -30,8 +30,10 @@ namespace Soomla
 					_instance = new KeyValueStorageAndroid();
 					#elif UNITY_IOS && !UNITY_EDITOR
 					_instance = new KeyValueStorageIOS();
-					#else
-					_instance = new KeyValueStorage();
+                    #elif UNITY_WP8 && !UNITY_EDITOR
+					_instance = new KeyValueStorageWP();
+                    #else
+                    _instance = new KeyValueStorage();
 					#endif
 				}
 				return _instance;

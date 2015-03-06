@@ -68,8 +68,13 @@ namespace Soomla {
 			AndroidJNI.PopLocalFrame(IntPtr.Zero);
 #elif UNITY_IOS && !UNITY_EDITOR
 			soomlaCore_Init(CoreSettings.SoomlaSecret, CoreSettings.DebugMessages);
+#elif UNITY_WP8 && !UNITY_EDITOR
+            SoomlaWpCore.SoomlaConfig.logDebug = CoreSettings.DebugMessages;
+            SoomlaWpCore.Soomla.initialize(CoreSettings.SoomlaSecret);
+
 #endif
-		}
+
+        }
 
 		/// <summary>
 		/// Will be called when a reward was given to the user.

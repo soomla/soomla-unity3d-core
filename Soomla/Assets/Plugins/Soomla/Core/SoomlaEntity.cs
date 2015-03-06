@@ -59,7 +59,15 @@ namespace Soomla {
 			this._id = jniSoomlaEntity.Call<string>("getID");
 		}
 #endif
-		/// <summary>
+
+#if UNITY_WP8
+		protected SoomlaEntity(SoomlaWpCore.SoomlaEntity wpSoomlaEntity) {
+            this.Name = wpSoomlaEntity.GetName();
+            this.Description = wpSoomlaEntity.GetDescription();
+            this._id = wpSoomlaEntity.GetId();
+		}
+#endif
+        /// <summary>
 		/// Constructor.
 		/// Generates an instance of <c>SoomlaEntity</c> from the given <c>JSONObject</c>.
 		/// </summary>

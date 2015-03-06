@@ -44,5 +44,42 @@ public class PostProcessScriptStarter : MonoBehaviour {
             }
 		}
 #endif
+#if UNITY_WP8
+        //Copy IAPMock.xml in the target VS Project for WP8
+        string pathToIAPMock = Application.dataPath + "\\Plugins\\WP8\\IAPMock.xml";
+        string targetPathToIAPMock = pathToBuiltProject + "\\" + PlayerSettings.productName + "\\IAPMock.xml";
+        FileUtil.DeleteFileOrDirectory(targetPathToIAPMock);
+        FileUtil.CopyFileOrDirectory(pathToIAPMock, targetPathToIAPMock);
+        
+        //Add IAPMock.xml to the VS Project for WP8
+        string pathToCsproj = pathToBuiltProject + "\\" + PlayerSettings.productName + "\\" + PlayerSettings.productName + ".csproj";
+        string[] csprojContent = File.ReadAllLines(pathToCsproj);
+
+        string lineToFind = "<Content Include=\"sqlite3.dll\">";
+        string lineToInsert = "    <Content Include=\"IAPMock.xml\" />";
+        string newCsproj = "";
+        bool writeCsproj = false;
+        foreach(string line in csprojContent)
+        {
+            if (line.Contains(lineToInsert))
+            {
+                break;
+            }
+            if(line.Contains(lineToFind))
+            {
+                newCsproj += lineToInsert + "\n";
+                writeCsproj = true;
+            }
+            newCsproj += line + "\n";
+        }
+
+        if(writeCsproj)
+        {
+            System.IO.StreamWriter file = new System.IO.StreamWriter(pathToCsproj);
+            file.WriteLine(newCsproj);
+            file.Close();
+        }
+
+#endif
     }
 }

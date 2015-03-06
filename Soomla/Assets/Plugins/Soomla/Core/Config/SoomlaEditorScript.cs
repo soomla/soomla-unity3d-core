@@ -20,13 +20,13 @@ using UnityEditor;
 #endif
 
 
-namespace Soomla 
+namespace Soomla
 {
 #if UNITY_EDITOR
 	[InitializeOnLoad]
 #endif
 	/// <summary>
-	/// This class holds the store's configurations. 
+	/// This class holds the store's configurations.
 	/// </summary>
 	public class SoomlaEditorScript : ScriptableObject
 	{
@@ -36,19 +36,20 @@ namespace Soomla
 		const string soomSettingsAssetName = "SoomlaEditorScript";
 		const string soomSettingsPath = "Soomla/Resources";
 		const string soomSettingsAssetExtension = ".asset";
-		
+
 		private static SoomlaEditorScript instance;
-		
+
 		public static SoomlaEditorScript Instance
 		{
 			get
 			{
 				if (instance == null)
 				{
-					instance = Resources.Load(soomSettingsAssetName) as SoomlaEditorScript;
+          instance = Resources.Load(soomSettingsAssetName) as SoomlaEditorScript;
+
 					if (instance == null)
 					{
-						// If not found, autocreate the asset object.
+            // If not found, autocreate the asset object.
 						instance = CreateInstance<SoomlaEditorScript>();
 #if UNITY_EDITOR
 						string properPath = Path.Combine(Application.dataPath, soomSettingsPath);
@@ -56,7 +57,7 @@ namespace Soomla
 						{
 							AssetDatabase.CreateFolder("Assets/Soomla", "Resources");
 						}
-						
+
 						string fullPath = Path.Combine(Path.Combine("Assets", soomSettingsPath),
 						                               soomSettingsAssetName + soomSettingsAssetExtension);
 						AssetDatabase.CreateAsset(instance, fullPath);
@@ -79,7 +80,7 @@ namespace Soomla
 				settings.OnEnable();
 			}
 		}
-		
+
 		public static void OnInspectorGUI() {
 			foreach(ISoomlaSettings settings in mSoomlaSettings) {
 				settings.OnSoomlaGUI();
@@ -96,7 +97,7 @@ namespace Soomla
 				EditorGUILayout.Space();
 			}
 		}
-		
+
 		[MenuItem("Window/Soomla/Edit Settings")]
 	    public static void Edit()
 	    {
@@ -118,7 +119,7 @@ namespace Soomla
 	        Application.OpenURL(url);
 	    }
 	#endif
-		
+
 	    public static void DirtyEditor()
 	    {
 	#if UNITY_EDITOR
