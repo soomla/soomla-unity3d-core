@@ -364,9 +364,9 @@ public class JSONObject : NullCheckable {
 					default:
 						try {
 							#if USEFLOAT
-							n = System.Convert.ToSingle(str);
+							n = System.Single.Parse(str);
 							#else
-							n = System.Convert.ToDouble(str);				 
+							n = System.Double.Parse(str);				 
 							#endif
 							type = Type.NUMBER;
 						} catch(System.FormatException) {
@@ -738,7 +738,7 @@ public class JSONObject : NullCheckable {
 					builder.Append(NaN);
 				#endif
 				else
-					builder.Append(n.ToString());
+					builder.Append(n.ToString("r"));
 				break;
 			case Type.OBJECT:
 				builder.Append("{");
@@ -870,7 +870,7 @@ public class JSONObject : NullCheckable {
 					builder.Append(NaN);
 				#endif
 				else
-					builder.Append(n.ToString());
+					builder.Append(n.ToString("r"));
 				break;
 			case Type.OBJECT:
 				builder.Append("{");
