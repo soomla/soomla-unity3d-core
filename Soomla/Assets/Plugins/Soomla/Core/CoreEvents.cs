@@ -53,7 +53,9 @@ namespace Soomla {
 		}
 
 		public static void Initialize() {
+			#if DEBUG_SOOMLA
 			SoomlaUtils.LogDebug(TAG, "Initializing CoreEvents and Soomla Core ...");
+			#endif
 #if UNITY_ANDROID && !UNITY_EDITOR
 			AndroidJNI.PushLocalFrame(100);
 
@@ -86,13 +88,17 @@ namespace Soomla {
         [Subscribe]
         public void onRewardGiven(RewardGivenEvent _Event)
         {
+            #if DEBUG_SOOMLA
             SoomlaUtils.LogDebug(TAG, "SOOMLA/UNITY onRewardGiven:" + _Event.RewardId);
+            #endif
 			string rewardId = _Event.RewardId;
 			CoreEvents.OnRewardGiven(Reward.GetReward(rewardId));
         }
         [Subscribe]
         public void onRewardTaken(RewardTakenEvent _Event) {
+			#if DEBUG_SOOMLA
 			SoomlaUtils.LogDebug(TAG, "SOOMLA/UNITY onRewardTaken:" + _Event.RewardId);
+			#endif
 			string rewardId = _Event.RewardId;
 			CoreEvents.OnRewardTaken(Reward.GetReward(rewardId));
 		}
@@ -102,7 +108,9 @@ namespace Soomla {
 		/// </summary>
 		/// <param name="message">Will contain a JSON representation of a <c>Reward</c> and a flag saying if it's a Badge or not.</param>
 		public void onRewardGiven(string message) {
+			#if DEBUG_SOOMLA
 			SoomlaUtils.LogDebug(TAG, "SOOMLA/UNITY onRewardGiven:" + message);
+			#endif
 			
 			JSONObject eventJSON = new JSONObject(message);
 			string rewardId = eventJSON["rewardId"].str;
@@ -115,7 +123,9 @@ namespace Soomla {
 		/// </summary>
 		/// <param name="message">Will contain a JSON representation of a <c>Reward</c> and a flag saying if it's a Badge or not.</param>
 		public void onRewardTaken(string message) {
+			#if DEBUG_SOOMLA
 			SoomlaUtils.LogDebug(TAG, "SOOMLA/UNITY onRewardTaken:" + message);
+			#endif
 			
 			JSONObject eventJSON = new JSONObject(message);
 			string rewardId = eventJSON["rewardId"].str;
@@ -127,7 +137,9 @@ namespace Soomla {
 		/// Will be called on custom events. Used for internal operations.
 		/// </summary>
 		public void onCustomEvent(string message) {
+			#if DEBUG_SOOMLA
 			SoomlaUtils.LogDebug(TAG, "SOOMLA/UNITY onCustomEvent:" + message);
+			#endif
 
 			JSONObject eventJSON = new JSONObject(message);
 			string name = eventJSON["name"].str;

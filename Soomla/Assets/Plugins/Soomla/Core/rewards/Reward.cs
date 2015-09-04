@@ -30,7 +30,9 @@ namespace Soomla {
 	/// You can give your user 100 coins for logging in through Facebook.
 	/// </summary>
 	public abstract class Reward : SoomlaEntity<Reward> {
-		private static string TAG = "SOOMLA Reward";
+		#if DEBUG_SOOMLA
+        private static string TAG = "SOOMLA Reward";
+		#endif
 
 		public Schedule Schedule;
 
@@ -103,7 +105,9 @@ namespace Soomla {
 		public bool Take() {
 
 			if (!RewardStorage.IsRewardGiven(this)) {
+				#if DEBUG_SOOMLA
 				SoomlaUtils.LogDebug(TAG, "Reward not given. id: " + _id);
+				#endif
 				return false;
 			}
 
@@ -122,7 +126,9 @@ namespace Soomla {
 		public bool Give() {
 
 			if (!CanGive()) {
+				#if DEBUG_SOOMLA
 				SoomlaUtils.LogDebug(TAG, "(Give) Reward is not approved by Schedule. id: " + _id);
+				#endif
 				return false;
 			}
 

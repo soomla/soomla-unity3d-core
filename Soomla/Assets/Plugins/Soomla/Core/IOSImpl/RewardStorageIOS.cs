@@ -58,7 +58,9 @@ namespace Soomla {
 		
 		override protected int _getTimesGiven(Reward reward) {
 			int times = rewardStorage_GetTimesGiven(reward.ID);
+			#if DEBUG_SOOMLA
 			SoomlaUtils.LogDebug("SOOMLA/UNITY RewardStorageIOS", string.Format("reward {0} given={1}", reward.ID, times));
+			#endif
 			return times;
 		}
 

@@ -18,6 +18,7 @@ using System;
 
 #if UNITY_EDITOR
 using UnityEditor;
+using System.Collections.Generic;
 #endif
 
 namespace Soomla
@@ -88,7 +89,11 @@ namespace Soomla
 			EditorGUILayout.EndHorizontal();
 
 			DebugMessages = EditorGUILayout.Toggle(debugMsgsLabel, DebugMessages);
+			bool oldDebugUnityMessages = DebugUnityMessages;
 			DebugUnityMessages = EditorGUILayout.Toggle(debugUnityMsgsLabel, DebugUnityMessages);
+			if (oldDebugUnityMessages != DebugUnityMessages) {
+				TryAddRemoveDebugFlag(!DebugUnityMessages);
+			}
 
 			EditorGUILayout.Space();
 
@@ -107,6 +112,33 @@ namespace Soomla
 				}
 
 				EditorGUILayout.HelpBox(msg, MessageType.Error);
+			}
+		}
+		
+		BuildTargetGroup[] supportedPlatforms = { BuildTargetGroup.Android, BuildTargetGroup.iPhone,
+			BuildTargetGroup.WP8, BuildTargetGroup.WebPlayer, BuildTargetGroup.Standalone};
+		const string targetFlag = "DEBUG_SOOMLA";
+		
+		private void TryAddRemoveDebugFlag(bool remove) {
+			foreach (var buildTarget in supportedPlatforms) {
+				string scriptDefines = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTarget);
+				List<string> flags = new List<string>(scriptDefines.Split(';'));
+				
+				if (flags.Contains(targetFlag)) {
+					if (remove) {
+						flags.Remove(targetFlag);
+					}
+				}
+				else {
+					if (!remove) {
+						flags.Add(targetFlag);
+					}
+				}
+				
+				string result = string.Join(";", flags.ToArray());
+				if (scriptDefines != result) {
+					PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTarget, result);
+				}
 			}
 		}
 #endif

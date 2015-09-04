@@ -21,8 +21,9 @@ using System;
 namespace Soomla {	
 
 	public class Schedule {
-
-		private static string TAG = "SOOMLA Schedule";
+		#if DEBUG_SOOMLA
+        private static string TAG = "SOOMLA Schedule";
+		#endif
 
 		public enum Recurrence {
 			EVERY_MONTH,
@@ -132,17 +133,23 @@ namespace Soomla {
 			DateTime now = DateTime.Now;
 
 			if (ActivationLimit < 1 && (TimeRanges == null || TimeRanges.Count == 0)) {
+				#if DEBUG_SOOMLA
 				SoomlaUtils.LogDebug(TAG, "There's no activation limit and no TimeRanges. APPROVED!");
+				#endif
 				return true;
 			}
 
 			if (ActivationLimit>0 && activationTimes >= ActivationLimit) {
+				#if DEBUG_SOOMLA
 				SoomlaUtils.LogDebug(TAG, "Activation limit exceeded.");
+				#endif
 				return false;
 			}
 
 			if ((TimeRanges == null || TimeRanges.Count == 0)) {
+				#if DEBUG_SOOMLA
 				SoomlaUtils.LogDebug(TAG, "We have an activation limit that was not reached. Also, we don't have any time ranges. APPROVED!");
+				#endif
 				return true;
 			}
 
@@ -153,7 +160,9 @@ namespace Soomla {
 
 			foreach(DateTimeRange dtr in TimeRanges) {
 				if (now >= dtr.Start && now <= dtr.End) {
+					#if DEBUG_SOOMLA
 					SoomlaUtils.LogDebug(TAG, "We are just in one of the time spans, it can't get any better then that. APPROVED!");
+					#endif
 					return true;
 				}
 			}
@@ -165,34 +174,50 @@ namespace Soomla {
 
 			foreach(DateTimeRange dtr in TimeRanges) {
 				if (now.Minute >= dtr.Start.Minute && now.Minute <= dtr.End.Minute) {
+					#if DEBUG_SOOMLA
 					SoomlaUtils.LogDebug(TAG, "Now is in one of the time ranges' minutes span.");
+					#endif
 
 					if (RequiredRecurrence == Recurrence.EVERY_HOUR) {
+						#if DEBUG_SOOMLA
 						SoomlaUtils.LogDebug(TAG, "It's a EVERY_HOUR recurrence. APPROVED!");
+						#endif
 						return true;
 					}
 
 					if (now.Hour >= dtr.Start.Hour && now.Hour <= dtr.End.Hour) {
+						#if DEBUG_SOOMLA
 						SoomlaUtils.LogDebug(TAG, "Now is in one of the time ranges' hours span.");
+						#endif
 
 						if (RequiredRecurrence == Recurrence.EVERY_DAY) {
+							#if DEBUG_SOOMLA
 							SoomlaUtils.LogDebug(TAG, "It's a EVERY_DAY recurrence. APPROVED!");
+							#endif
 							return true;
 						}
 
 						if (now.DayOfWeek >= dtr.Start.DayOfWeek && now.DayOfWeek <= dtr.End.DayOfWeek) {
+							#if DEBUG_SOOMLA
 							SoomlaUtils.LogDebug(TAG, "Now is in one of the time ranges' day-of-week span.");
+							#endif
 							
 							if (RequiredRecurrence == Recurrence.EVERY_WEEK) {
+								#if DEBUG_SOOMLA
 								SoomlaUtils.LogDebug(TAG, "It's a EVERY_WEEK recurrence. APPROVED!");
+								#endif
 								return true;
 							}
 
 							if (now.Day >= dtr.Start.Day && now.Day <= dtr.End.Day) {
+								#if DEBUG_SOOMLA
 								SoomlaUtils.LogDebug(TAG, "Now is in one of the time ranges' days span.");
+								#endif
 								
 								if (RequiredRecurrence == Recurrence.EVERY_MONTH) {
+									#if DEBUG_SOOMLA
 									SoomlaUtils.LogDebug(TAG, "It's a EVERY_MONTH recurrence. APPROVED!");
+									#endif
 									return true;
 								}
 							}
