@@ -10,7 +10,7 @@ Assets/Plugins/WP8/Soomla/Sqlite.dll
 Assets/Plugins/WP8/Soomla/Sqlite.winmd
 Assets/Plugins/WP8/Soomla/sqlite3.dll
 Assets/Plugins/WP8/Soomla/Placeholder/soomla-wp-core.dll
-Assets/Plugins/Soomla/Core
+Assets/Soomla/Scripts/Core
 Assets/Soomla/core_file_list
 Assets/Soomla/Editor/SoomlaPostBuild.cs
 Assets/Soomla/Editor/SoomlaSettingsEditor.cs
