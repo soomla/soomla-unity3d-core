@@ -62,7 +62,9 @@ namespace Soomla {
 				
 				// Initializing Soomla Secret
 				using(AndroidJavaClass jniSoomlaClass = new AndroidJavaClass("com.soomla.Soomla")) {
-					jniSoomlaClass.CallStatic("initialize", CoreSettings.SoomlaSecret);
+					AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer"); 
+					AndroidJavaObject currentActivity = jc.GetStatic<AndroidJavaObject>("currentActivity");
+					jniSoomlaClass.CallStatic("initialize", currentActivity, CoreSettings.SoomlaSecret);
 				}
 				AndroidJNI.PopLocalFrame(IntPtr.Zero);
 #elif UNITY_IOS && !UNITY_EDITOR
