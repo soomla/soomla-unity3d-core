@@ -2,6 +2,7 @@ Assets/Plugins/Android/Soomla/AndroidManifest.xml
 Assets/Plugins/Android/Soomla/project.properties
 Assets/Plugins/Android/Soomla/libs/SoomlaAndroidCore.jar
 Assets/Plugins/Android/Soomla/libs/square-otto-1.3.2.jar
+Assets/Plugins/Android/Soomla/libs/keeva-1.0.1.jar
 Assets/Plugins/Android/Soomla/libs/UnitySoomlaAndroidCore.jar
 Assets/Plugins/iOS/Soomla/libSoomlaIOSCore.a
 Assets/Plugins/iOS/Soomla/libUnitySoomlaiOSCore.a
