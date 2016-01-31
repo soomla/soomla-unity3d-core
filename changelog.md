@@ -1,3 +1,8 @@
+### v1.2.7 [view commit logs](https://github.com/soomla/soomla-unity3d-core/compare/v1.2.6...v1.2.7)
+
+* Changes
+  * Stopped using SoomlaApp in android
+
 ### v1.2.6 [view commit logs](https://github.com/soomla/soomla-unity3d-core/compare/v1.2.5...v1.2.6)
 
 * Changes

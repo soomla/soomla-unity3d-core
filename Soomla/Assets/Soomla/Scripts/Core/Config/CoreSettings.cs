@@ -40,7 +40,7 @@ namespace Soomla
 
 		static CoreSettings instance = new CoreSettings();
 
-		static string currentModuleVersion = "1.2.6";
+		static string currentModuleVersion = "1.2.7";
 
 		static CoreSettings()
 		{
