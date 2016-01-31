@@ -1,11 +1,11 @@
 Assets/Plugins/Android/Soomla/AndroidManifest.xml
 Assets/Plugins/Android/Soomla/project.properties
 Assets/Plugins/Android/Soomla/libs/SoomlaAndroidCore.jar
-Assets/Plugins/Android/Soomla/libs/square-otto-1.3.2.jar
-Assets/Plugins/Android/Soomla/libs/keeva-1.0.1.jar
 Assets/Plugins/Android/Soomla/libs/UnitySoomlaAndroidCore.jar
+Assets/Plugins/Android/Common
 Assets/Plugins/iOS/Soomla/libSoomlaIOSCore.a
 Assets/Plugins/iOS/Soomla/libUnitySoomlaiOSCore.a
+Assets/Plugins/iOS/Common
 Assets/Plugins/WP8/Soomla/soomla-wp-core.dll
 Assets/Plugins/WP8/Soomla/Sqlite.dll
 Assets/Plugins/WP8/Soomla/Sqlite.winmd

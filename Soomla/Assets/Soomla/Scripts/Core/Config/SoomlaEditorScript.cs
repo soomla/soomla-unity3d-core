@@ -260,6 +260,9 @@ namespace Soomla
 		{
 			List<string> folders = new List<string>();
 			foreach (string file in filePaths) {
+				if (file.EndsWith ("Common")) {
+					continue;
+				}
 				FileUtil.DeleteFileOrDirectory(file);
 				string folderPath = Path.GetDirectoryName(file);
 				do {
