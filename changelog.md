@@ -1,3 +1,9 @@
+### v1.3.0 [view commit logs](https://github.com/soomla/soomla-unity3d-core/compare/v1.2.7...v1.3.0)
+
+* Changes
+  * Moved Soomla script folders from Assets/Plugins/Soomla to Assets/Soomla/Scripts
+  * Added SoomlaShared folder for libs shared with Highway
+
 ### v1.2.7 [view commit logs](https://github.com/soomla/soomla-unity3d-core/compare/v1.2.6...v1.2.7)
 
 * Changes
