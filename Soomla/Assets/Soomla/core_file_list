@@ -2,10 +2,10 @@ Assets/Plugins/Android/Soomla/AndroidManifest.xml
 Assets/Plugins/Android/Soomla/project.properties
 Assets/Plugins/Android/Soomla/libs/SoomlaAndroidCore.jar
 Assets/Plugins/Android/Soomla/libs/UnitySoomlaAndroidCore.jar
-Assets/Plugins/Android/Common
+Assets/Plugins/Android/SoomlaShared
 Assets/Plugins/iOS/Soomla/libSoomlaIOSCore.a
 Assets/Plugins/iOS/Soomla/libUnitySoomlaiOSCore.a
-Assets/Plugins/iOS/Common
+Assets/Plugins/iOS/SoomlaShared
 Assets/Plugins/WP8/Soomla/soomla-wp-core.dll
 Assets/Plugins/WP8/Soomla/Sqlite.dll
 Assets/Plugins/WP8/Soomla/Sqlite.winmd
