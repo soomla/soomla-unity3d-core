@@ -260,7 +260,7 @@ namespace Soomla
 		{
 			List<string> folders = new List<string>();
 			foreach (string file in filePaths) {
-				if (file.EndsWith ("Common")) {
+				if (file.EndsWith ("SoomlaShared")) {
 					continue;
 				}
 				FileUtil.DeleteFileOrDirectory(file);
