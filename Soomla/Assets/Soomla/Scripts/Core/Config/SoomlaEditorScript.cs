@@ -149,7 +149,7 @@ namespace Soomla
 			}
 		}
 
-		#if UNITY_4_5 || UNITY_4_6
+		#if UNITY_4_5 || UNITY_4_6 || UNITY_4_7
 		private static bool showIOSSettings = (EditorUserBuildSettings.activeBuildTarget == BuildTarget.iPhone);
 		#else
 		private static bool showIOSSettings = (EditorUserBuildSettings.activeBuildTarget == BuildTarget.iOS);
