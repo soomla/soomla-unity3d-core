@@ -19,7 +19,7 @@ namespace Soomla
 		// only copy over a fresh copy of the AndroidManifest if one does not exist
 		if (!File.Exists(outputFile))
 		{
-#if UNITY_4_5 || UNITY_4_6 || UNITY_5_0 || UNITY_5_1
+#if UNITY_4_5 || UNITY_4_6 || UNITY_4_7 || UNITY_5_0 || UNITY_5_1
 		var inputFile = Path.Combine(EditorApplication.applicationContentsPath, "PlaybackEngines/androidplayer/AndroidManifest.xml");
 #elif UNITY_5_2
 		var inputFile = Path.Combine(EditorApplication.applicationContentsPath, "PlaybackEngines/androidplayer/Apk/AndroidManifest.xml");
