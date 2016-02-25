@@ -21,7 +21,7 @@ namespace Soomla
 		{
 #if UNITY_4_5 || UNITY_4_6 || UNITY_5_0 || UNITY_5_1
 		var inputFile = Path.Combine(EditorApplication.applicationContentsPath, "PlaybackEngines/androidplayer/AndroidManifest.xml");
-#elif UNITY_5_2 || UNITY_5_3
+#elif UNITY_5_2 || (UNITY_5_3 && UNITY_EDITOR_WIN)
 		var inputFile = Path.Combine(EditorApplication.applicationContentsPath, "PlaybackEngines/androidplayer/Apk/AndroidManifest.xml");
 #else				
 		var inputFile = Path.Combine(EditorApplication.applicationPath, "../PlaybackEngines/androidplayer/Apk/AndroidManifest.xml");
