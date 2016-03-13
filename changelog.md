@@ -1,3 +1,8 @@
+### v1.3.2 [view commit logs](https://github.com/soomla/soomla-unity3d-core/compare/v1.3.1...v1.3.2)
+
+* Changes
+  * Removed FileNotFound exception in Unity 5.3
+
 ### v1.3.1 [view commit logs](https://github.com/soomla/soomla-unity3d-core/compare/v1.3.0...v1.3.1)
 
 * Fixes
