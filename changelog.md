@@ -1,3 +1,19 @@
+### v1.3.2 [view commit logs](https://github.com/soomla/soomla-unity3d-core/compare/v1.3.1...v1.3.2)
+
+* Changes
+  * Removed FileNotFound exception in Unity 5.3
+
+### v1.3.1 [view commit logs](https://github.com/soomla/soomla-unity3d-core/compare/v1.3.0...v1.3.1)
+
+* Fixes
+  * Fix for Unity 4.7
+
+### v1.3.0 [view commit logs](https://github.com/soomla/soomla-unity3d-core/compare/v1.2.7...v1.3.0)
+
+* Changes
+  * Moved Soomla script folders from Assets/Plugins/Soomla to Assets/Soomla/Scripts
+  * Added SoomlaShared folder for libs shared with Highway
+
 ### v1.2.7 [view commit logs](https://github.com/soomla/soomla-unity3d-core/compare/v1.2.6...v1.2.7)
 
 * Changes
