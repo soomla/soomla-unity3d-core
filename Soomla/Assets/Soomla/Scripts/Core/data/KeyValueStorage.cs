@@ -24,7 +24,7 @@ namespace Soomla
 
 		protected const string TAG = "SOOMLA KeyValueStorage"; // used for Log error messages
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || UNITY_WEBGL
 		static string ALL_KEYS_KEY = "allSoomlaKeys";
 #endif
 		static KeyValueStorage _instance = null;
@@ -67,7 +67,7 @@ namespace Soomla
 
 
 		virtual protected string _getValue(string key) {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || UNITY_WEBGL
 			return PlayerPrefs.GetString (key);
 #else
 			return null;
@@ -75,7 +75,7 @@ namespace Soomla
 		}
 
 		virtual protected void _setValue(string key, string val) {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || UNITY_WEBGL
 			List<string> allKeys = new List<string>(PlayerPrefs.GetString(ALL_KEYS_KEY, "").Split(','));
 			if (!allKeys.Contains(key)) {
                 allKeys.Add(key);
@@ -86,7 +86,7 @@ namespace Soomla
 		}
 
 		virtual protected void _deleteKeyValue(string key) {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || UNITY_WEBGL
 			List<string> allKeys = new List<string>(PlayerPrefs.GetString(ALL_KEYS_KEY, "").Split(','));
             if (allKeys.Contains(key)) {
                 allKeys.Remove(key);
@@ -97,7 +97,7 @@ namespace Soomla
 		}
 
 		virtual protected List<string> _getEncryptedKeys() {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || UNITY_WEBGL
             return new List<string>(PlayerPrefs.GetString(ALL_KEYS_KEY, "").Split(','));
 #else
 			return null;
@@ -105,7 +105,7 @@ namespace Soomla
 		}
 
 		virtual protected void _purge() {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || UNITY_WEBGL
 			PlayerPrefs.DeleteAll();
 #endif
 		}
