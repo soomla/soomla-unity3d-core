@@ -303,15 +303,52 @@ namespace Soomla
 			EditorGUILayout.BeginHorizontal();
 			GUIStyle style = new GUIStyle(GUI.skin.label);
 			style.normal.textColor = Color.blue;
-			if (GUILayout.Button ((latestVersion != null && currentVersion != latestVersion) ? versionPrompt : "", style, GUILayout.Width (170), FieldHeight)) {
-				if (latestVersion != null && currentVersion != latestVersion) {
+
+            var newerVersionAvail = CheckIsNewerVersion(currentVersion, latestVersion);
+
+            if (GUILayout.Button (newerVersionAvail ? versionPrompt : "", style, GUILayout.Width (170), FieldHeight)) {
+				if (newerVersionAvail)
+                {
 					Application.OpenURL(downloadLink);
 				}
 			}
 			EditorGUILayout.EndHorizontal();
 		}
 
-		public static void RemoveSoomlaModuleButton(GUIContent label, string value, string moduleId)
+	    private static bool CheckIsNewerVersion(string currentVersion, string latestVersion)
+	    {
+            if(string.IsNullOrEmpty(currentVersion))
+                return false;
+	        
+	        if (string.IsNullOrEmpty(latestVersion))
+	            return false;
+
+	        var currentVersionCodesStr = currentVersion.Split('.');
+	        var currentVersionCodes = System.Array.ConvertAll<string, int>(currentVersionCodesStr, int.Parse);
+
+	        if (currentVersionCodes.Length == 0)
+	            return false;
+
+            var latestVersionCodesStr = latestVersion.Split('.');
+            var latestVersionCodes = System.Array.ConvertAll<string, int>(latestVersionCodesStr, int.Parse);
+
+            if (latestVersionCodes.Length == 0)
+                return false;
+
+            for (var i = 0; i < currentVersionCodes.Length; i++)
+            {
+                if (latestVersionCodes.Length <= i)
+                    return false;
+
+                if (currentVersionCodes[i] < latestVersionCodes[i])
+                    return true;
+	        }
+
+
+	        return false;
+	    }
+
+	    public static void RemoveSoomlaModuleButton(GUIContent label, string value, string moduleId)
 		{
 			EditorGUILayout.BeginHorizontal();
 			EditorGUILayout.LabelField(label, GUILayout.Width(140), FieldHeight);
