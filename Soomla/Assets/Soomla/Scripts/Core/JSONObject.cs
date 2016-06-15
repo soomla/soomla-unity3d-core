@@ -37,7 +37,7 @@ using Debug = UnityEngine.Debug;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+namespace Soomla {
 public class JSONObject : NullCheckable {
 	#if POOLING
 	const int MAX_POOL_SIZE = 10000;
@@ -1058,3 +1058,4 @@ public class JSONObject : NullCheckable {
 		}
 		#endif
 	}
+}
