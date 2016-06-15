@@ -33,16 +33,22 @@ weak_frameworks = [
 pbx_file_path = sys.argv[1] + '/Unity-iPhone.xcodeproj/project.pbxproj'
 pbx_object = XcodeProject.Load(pbx_file_path)
 
+def copysoomlalibs(libpath):
+  target_soomla_binaries_path = path.join(build_path, 'Libraries', 'Soomla')
+  if not os.path.isdir(target_soomla_binaries_path):
+    os.mkdir(target_soomla_binaries_path)
+  soomla_libraries_group = pbx_object.get_or_create_group('Soomla', parent=pbx_object.get_or_create_group('Libraries'))
+  for library in os.listdir(libpath):
+    name_components = library.split('.')
+    if (name_components[len(name_components) - 1] == 'a'):
+      copyfile(path.join(libpath, library), path.join(target_soomla_binaries_path, library))
+      pbx_object.add_file_if_doesnt_exist(path.join(target_soomla_binaries_path, library), tree='SOURCE_ROOT', parent=soomla_libraries_group)
+  return
+
 soomla_binaries_path = path.join(script_dir, '..', '..', '..', 'Plugins', 'iOS', 'Soomla')
-target_soomla_binaries_path = path.join(build_path, 'Libraries', 'Soomla')
-if not os.path.isdir(target_soomla_binaries_path):
-  os.mkdir(target_soomla_binaries_path)
-soomla_libraries_group = pbx_object.get_or_create_group('Soomla', parent=pbx_object.get_or_create_group('Libraries'))
-for library in os.listdir(soomla_binaries_path):
-  name_components = library.split('.')
-  if (name_components[len(name_components) - 1] == 'a'):
-    copyfile(path.join(soomla_binaries_path, library), path.join(target_soomla_binaries_path, library))
-    pbx_object.add_file_if_doesnt_exist(path.join(target_soomla_binaries_path, library), tree='SOURCE_ROOT', parent=soomla_libraries_group)
+shared_binaries_path = path.join(script_dir, '..', '..', '..', 'Plugins', 'iOS', 'SoomlaShared')
+copysoomlalibs(soomla_binaries_path)
+copysoomlalibs(shared_binaries_path)
 
 for framework in frameworks:
   pbx_object.add_file_if_doesnt_exist(framework, tree='SDKROOT')
